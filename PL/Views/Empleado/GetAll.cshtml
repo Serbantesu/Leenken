@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Empleados:</h1>
+            <h6>En esta ventana podras agregar, actualizar o eliminar empleados.</h6>
+            
+        </div>
+
+    </div>
+
+</div>
+<br />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Empleado/EmpleadoCRUD.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-1" style="padding-left:100px">
+            <button type="button" class="btn btn-success bi bi-person-add" onclick="MostrarModal(), IniciarEmpleado()"> Agregar Empleado</button>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table id="Empleados" class="table table-dark table-hover" border="1">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Editar</th>
+                        <th class="visually-hidden" scope="col">IdEmpleado</th>
+                        <th class="text-center" scope="col">Numero Nomina</th>
+                        <th class="text-center" scope="col">Nombre</th>
+                        <th class="text-center" scope="col">Apellido Paterno</th>
+                        <th class="text-center" scope="col">Apellido Materno</th>
+                        <th class="visually-hidden" scope="col">IdEntidad Federativa</th>
+                        <th class="text-center" scope="col">Estado</th>
+                        <th class="text-center" scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center" id="myModalLabel">Formulario Empleado</h4>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtIdEmpleado" placeholder="Id Empleado" disabled="disabled" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtNumeroNomina" placeholder="Numero Nomina" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtApellidoPaterno" placeholder="Apellido Paterno" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="txtApellidoMaterno" placeholder="Apellido Materno" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <select type="text" class="form-control" id="ddlEstados"></select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success glyphicon glyphicon-pencil" id="btnUpdate" onclick="Comprobar(), CerrarModal()">Actualizar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="CerrarModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Detalle</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>
+                                Acción completada con éxito
+                            </h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" value="Regresar" data-dismiss="modal">Regresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+

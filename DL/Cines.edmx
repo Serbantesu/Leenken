@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JCervantesCinesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cine">
+          <Key>
+            <PropertyRef Name="IdCine" />
+          </Key>
+          <Property Name="IdCine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="120" />
+          <Property Name="IdZona" Type="int" />
+          <Property Name="Ventas" Type="float" />
+          <Property Name="Latitud" Type="float" />
+          <Property Name="Longitud" Type="float" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="Password" Type="varbinary" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Zona">
+          <Key>
+            <PropertyRef Name="IdZona" />
+          </Key>
+          <Property Name="IdZona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Cine__Ventas__1273C1CD">
+          <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
+          <End Role="Cine" Type="Self.Cine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zona">
+              <PropertyRef Name="IdZona" />
+            </Principal>
+            <Dependent Role="Cine">
+              <PropertyRef Name="IdZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CineAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="IdZona" Type="int" Mode="In" />
+          <Parameter Name="Ventas" Type="float" Mode="In" />
+          <Parameter Name="Latitud" Type="float" Mode="In" />
+          <Parameter Name="Longitud" Type="float" Mode="In" />
+        </Function>
+        <Function Name="CineDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCine" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CineGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CineGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCine" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CineUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCine" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="IdZona" Type="int" Mode="In" />
+          <Parameter Name="Ventas" Type="float" Mode="In" />
+          <Parameter Name="Latitud" Type="float" Mode="In" />
+          <Parameter Name="Longitud" Type="float" Mode="In" />
+        </Function>
+        <Function Name="GetByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PasswordUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="UsuarioAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+          <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="ZonaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ZonaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdZona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ZonaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ZonaGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdZona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ZonaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdZona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="JCervantesCinesModelStoreContainer">
+          <EntitySet Name="Cine" EntityType="Self.Cine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cine__Ventas__1273C1CD" Association="Self.FK__Cine__Ventas__1273C1CD">
+            <End Role="Zona" EntitySet="Zona" />
+            <End Role="Cine" EntitySet="Cine" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JCervantesCinesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cine">
+          <Key>
+            <PropertyRef Name="IdCine" />
+          </Key>
+          <Property Name="IdCine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="IdZona" Type="Int32" />
+          <Property Name="Ventas" Type="Double" />
+          <Property Name="Latitud" Type="Double" />
+          <Property Name="Longitud" Type="Double" />
+          <NavigationProperty Name="Zona" Relationship="Self.FK__Cine__Ventas__1273C1CD" FromRole="Cine" ToRole="Zona" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="Binary" MaxLength="20" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Zona">
+          <Key>
+            <PropertyRef Name="IdZona" />
+          </Key>
+          <Property Name="IdZona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cines" Relationship="Self.FK__Cine__Ventas__1273C1CD" FromRole="Zona" ToRole="Cine" />
+        </EntityType>
+        <Association Name="FK__Cine__Ventas__1273C1CD">
+          <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
+          <End Role="Cine" Type="Self.Cine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zona">
+              <PropertyRef Name="IdZona" />
+            </Principal>
+            <Dependent Role="Cine">
+              <PropertyRef Name="IdZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JCervantesCinesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cines" EntityType="Self.Cine" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="Zonas" EntityType="Self.Zona" />
+          <AssociationSet Name="FK__Cine__Ventas__1273C1CD" Association="Self.FK__Cine__Ventas__1273C1CD">
+            <End Role="Zona" EntitySet="Zonas" />
+            <End Role="Cine" EntitySet="Cines" />
+          </AssociationSet>
+          <FunctionImport Name="CineAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="IdZona" Mode="In" Type="Int32" />
+            <Parameter Name="Ventas" Mode="In" Type="Double" />
+            <Parameter Name="Latitud" Mode="In" Type="Double" />
+            <Parameter Name="Longitud" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="CineDelete">
+            <Parameter Name="IdCine" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CineGetAll" ReturnType="Collection(JCervantesCinesModel.CineGetAll_Result)" />
+          <FunctionImport Name="CineGetById" ReturnType="Collection(JCervantesCinesModel.CineGetById_Result)">
+            <Parameter Name="IdCine" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CineUpdate">
+            <Parameter Name="IdCine" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="IdZona" Mode="In" Type="Int32" />
+            <Parameter Name="Ventas" Mode="In" Type="Double" />
+            <Parameter Name="Latitud" Mode="In" Type="Double" />
+            <Parameter Name="Longitud" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="GetByUserName" ReturnType="Collection(JCervantesCinesModel.GetByUserName_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PasswordUpdate">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="UsuarioAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+            <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="ZonaAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ZonaDelete">
+            <Parameter Name="IdZona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ZonaGetAll" ReturnType="Collection(JCervantesCinesModel.ZonaGetAll_Result)" />
+          <FunctionImport Name="ZonaGetById" ReturnType="Collection(JCervantesCinesModel.ZonaGetById_Result)">
+            <Parameter Name="IdZona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ZonaUpdate">
+            <Parameter Name="IdZona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="CineGetAll_Result">
+          <Property Type="Int32" Name="IdCine" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="120" />
+          <Property Type="Int32" Name="IdZona" Nullable="false" />
+          <Property Type="String" Name="NombreZona" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Ventas" Nullable="true" />
+          <Property Type="Double" Name="Latitud" Nullable="true" />
+          <Property Type="Double" Name="Longitud" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CineGetById_Result">
+          <Property Type="Int32" Name="IdCine" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="120" />
+          <Property Type="Int32" Name="IdZona" Nullable="false" />
+          <Property Type="String" Name="NombreZona" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Ventas" Nullable="true" />
+          <Property Type="Double" Name="Latitud" Nullable="true" />
+          <Property Type="Double" Name="Longitud" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetByUserName_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Password" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="ZonaGetAll_Result">
+          <Property Type="Int32" Name="IdZona" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ZonaGetById_Result">
+          <Property Type="Int32" Name="IdZona" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JCervantesCinesModelStoreContainer" CdmEntityContainer="JCervantesCinesEntities">
+          <EntitySetMapping Name="Cines">
+            <EntityTypeMapping TypeName="JCervantesCinesModel.Cine">
+              <MappingFragment StoreEntitySet="Cine">
+                <ScalarProperty Name="IdCine" ColumnName="IdCine" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="Ventas" ColumnName="Ventas" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="JCervantesCinesModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zonas">
+            <EntityTypeMapping TypeName="JCervantesCinesModel.Zona">
+              <MappingFragment StoreEntitySet="Zona">
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CineAdd" FunctionName="JCervantesCinesModel.Store.CineAdd" />
+          <FunctionImportMapping FunctionImportName="CineDelete" FunctionName="JCervantesCinesModel.Store.CineDelete" />
+          <FunctionImportMapping FunctionImportName="CineGetAll" FunctionName="JCervantesCinesModel.Store.CineGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCervantesCinesModel.CineGetAll_Result">
+                <ScalarProperty Name="IdCine" ColumnName="IdCine" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="NombreZona" ColumnName="NombreZona" />
+                <ScalarProperty Name="Ventas" ColumnName="Ventas" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CineGetById" FunctionName="JCervantesCinesModel.Store.CineGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCervantesCinesModel.CineGetById_Result">
+                <ScalarProperty Name="IdCine" ColumnName="IdCine" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="NombreZona" ColumnName="NombreZona" />
+                <ScalarProperty Name="Ventas" ColumnName="Ventas" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CineUpdate" FunctionName="JCervantesCinesModel.Store.CineUpdate" />
+          <FunctionImportMapping FunctionImportName="GetByUserName" FunctionName="JCervantesCinesModel.Store.GetByUserName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCervantesCinesModel.GetByUserName_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PasswordUpdate" FunctionName="JCervantesCinesModel.Store.PasswordUpdate" />
+          <FunctionImportMapping FunctionImportName="UsuarioAdd" FunctionName="JCervantesCinesModel.Store.UsuarioAdd" />
+          <FunctionImportMapping FunctionImportName="ZonaAdd" FunctionName="JCervantesCinesModel.Store.ZonaAdd" />
+          <FunctionImportMapping FunctionImportName="ZonaDelete" FunctionName="JCervantesCinesModel.Store.ZonaDelete" />
+          <FunctionImportMapping FunctionImportName="ZonaGetAll" FunctionName="JCervantesCinesModel.Store.ZonaGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCervantesCinesModel.ZonaGetAll_Result">
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ZonaGetById" FunctionName="JCervantesCinesModel.Store.ZonaGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCervantesCinesModel.ZonaGetById_Result">
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ZonaUpdate" FunctionName="JCervantesCinesModel.Store.ZonaUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
